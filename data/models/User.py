@@ -1,13 +1,14 @@
 class User:
 
     def __init__(self, first_name: str, last_name: str, account_number: str, user_name, user_id: int,
-                 phone_number: str):
+                 password: str, phone_number: str):
         self.__userId = user_id
         self.__phone_number = phone_number
         self.__first_name = first_name
         self.__last_name = last_name
         self.__account_number = account_number
         self.__user_name = user_name
+        self.__password = password
 
     def get_user_id(self):
         return self.__userId
