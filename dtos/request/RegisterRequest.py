@@ -1,12 +1,11 @@
 class RegisterRequest:
-    def __init__(self, first_name, last_name, email_address, date_of_birth, phone_number, BVN, password):
-        self.__first_name = first_name
-        self.__last_name = last_name
-        self.__email_address = email_address
-        self.__date_of_birth = date_of_birth
-        self.__phone_number = phone_number
-        self.__BVN = BVN
-        self.__password = password
+    def __init__(self):
+        self.__first_name = ""
+        self.__last_name = ""
+        self.__email_address = ""
+        self.__date_of_birth = ""
+        self.__phone_number = ""
+        self.__password = ""
 
     def set_first_name(self, first_name):
         self.__first_name = first_name
@@ -26,8 +25,8 @@ class RegisterRequest:
     def get_email_address(self):
         return self.__email_address
 
-    def set_date_of_birth(self):
-        return self.__date_of_birth
+    def set_date_of_birth(self, date_of_birth):
+        self.__date_of_birth= date_of_birth
 
     def get_date_of_birth(self):
         return self.__date_of_birth

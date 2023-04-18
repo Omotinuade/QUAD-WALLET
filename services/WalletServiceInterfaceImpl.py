@@ -1,11 +1,12 @@
 from abc import ABC
 
+from data.repositories.WalletRepositoryImpl import WalletRepositoryImpl
 from data.repositories.WalletRepositoryInterface import WalletRepositoryInterface
 from services.WalletServiceInterface import WalletServiceInterface
 
 
 class WalletServicesInterfaceImplementation(WalletServiceInterface, ABC):
-    wallet_Repository = WalletRepositoryInterface()
+    wallet_Repository = WalletRepositoryImpl()
 
     def deposit(self, account_number, amount):
         user = self.wallet_Repository.find_user_by_account_number(account_number)

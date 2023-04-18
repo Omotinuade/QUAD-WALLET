@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Any
 
 from data.models.User import User
 
@@ -23,7 +23,7 @@ class UserRepository(ABC):
         pass
 
     @abstractmethod
-    def find_by_user_name(self, user_name: str) -> List[User]:
+    def find_user_by_email_address(self, email_address: str) -> Any | None:
         pass
 
     @abstractmethod

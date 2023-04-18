@@ -34,9 +34,9 @@ class UserRepositoryImpl(UserRepository, ABC):
     def count(self) -> int:
         return self.count
 
-    def find_by_user_name(self, user_name: str) -> Any | None:
+    def find_user_by_email_address(self, email_address: str) -> Any | None:
         for user in self.users:
-            if user.get_user_name().casefold(user_name):
+            if user.get_email_address().casefold(email_address):
                 return user
             else:
                 return None
