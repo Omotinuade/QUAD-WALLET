@@ -1,4 +1,4 @@
-class UserResponse:
+class RegisterResponse:
     def __init__(self):
         self.__first_name = ""
         self.__last_name = ""
@@ -46,6 +46,7 @@ class UserResponse:
 
     def __str__(self):
         return f"""
+        Welcome to Quad Wallet!
         Account Number: {self.__account_number}
         Name: {self.__first_name} '+'{self.__last_name}
         Email Address: {self.__email_address}'

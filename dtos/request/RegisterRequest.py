@@ -1,4 +1,4 @@
-class UserRequest:
+class RegisterRequest:
     def __init__(self, first_name, last_name, email_address, date_of_birth, phone_number, BVN, password):
         self.__first_name = first_name
         self.__last_name = last_name
