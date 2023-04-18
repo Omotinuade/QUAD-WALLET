@@ -15,6 +15,7 @@ class User:
 
     def set_user_id(self, user_id):
         self.__user_id = user_id
+        
 
     def get_first_name(self):
         return self.__first_name
@@ -73,3 +74,4 @@ class User:
 
     def set_password(self, password):
         self.__password = password
+       

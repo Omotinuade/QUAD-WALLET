@@ -4,6 +4,7 @@ from typing import List, Any
 from data.models.User import User
 from data.repositories.UserRepository import UserRepository
 
+
 count: int = 0
 
 
@@ -24,7 +25,8 @@ class UserRepositoryImpl(UserRepository, ABC):
             self.count += 1
             return user
 
-    def find_by_id(self, user_id: int) -> Any | None:
+  
+    def find_by_id(self, user_id: int) -> User:
         for user in self.users:
             if user.get_user_id() == user_id:
                 return user
@@ -55,3 +57,4 @@ class UserRepositoryImpl(UserRepository, ABC):
 
     def find_all(self) -> List[User]:
         return self.users
+
