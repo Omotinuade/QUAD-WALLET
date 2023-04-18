@@ -1,0 +1,2 @@
+class WalletRepository:
+    pass
