@@ -3,7 +3,6 @@ from typing import List
 
 from data.models.User import User
 
-
 class UserRepository(ABC):
 
     @abstractmethod
@@ -29,3 +28,4 @@ class UserRepository(ABC):
     @abstractmethod
     def find_by_account_number(self, account_number: str) -> List:
         pass
+
