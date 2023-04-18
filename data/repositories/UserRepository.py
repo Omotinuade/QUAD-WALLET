@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from models import User
-
+from data.models.User import User
 
 class UserRepository(ABC):
 
@@ -29,3 +28,4 @@ class UserRepository(ABC):
     @abstractmethod
     def find_by_account_number(self, account_number: str) -> List:
         pass
+
