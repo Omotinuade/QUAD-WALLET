@@ -65,7 +65,7 @@ class User:
     def get_password(self):
         return self.__password
 
-    def _str_(self):
+    def __str__(self):
         return f"First name: {self.__first_name}" \
                f"Last name:  {self.__last_name}" \
                f"Account Number: {self.__account_number}" \

@@ -9,6 +9,7 @@ def maps(registerRequest: RegisterRequest, user: User):
     user.set_email_address(registerRequest.get_email_address())
     registerRequest.get_date_of_birth()
     registerRequest.get_phone_number()
+    return user
 
 
 class Mapper:
