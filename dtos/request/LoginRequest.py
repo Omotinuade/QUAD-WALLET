@@ -1,7 +1,7 @@
 class LoginRequest:
-    def __init__(self, email_address, password):
-        self.__email_address = email_address
-        self.__password = password
+    def __init__(self):
+        self.__email_address = ""
+        self.__password = ""
 
     def set_password(self, password):
         self.__password = password

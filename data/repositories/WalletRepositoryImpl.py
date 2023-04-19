@@ -19,7 +19,7 @@ class WalletRepositoryImpl(WalletRepositoryInterface):
 
     def find_user_by_account_number(self, account_number):
         for user in self.user_list:
-            if user.get_account_number == account_number:
+            if user.get_account_number() == account_number:
                 return user
             else:
                 return None

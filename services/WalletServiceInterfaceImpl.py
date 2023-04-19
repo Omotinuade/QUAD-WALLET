@@ -2,15 +2,19 @@ from abc import ABC
 
 from data.repositories.WalletRepositoryImpl import WalletRepositoryImpl
 from data.repositories.WalletRepositoryInterface import WalletRepositoryInterface
+from services.UserServiceInterfaceImpl import UserServiceInterfaceImpl
 from services.WalletServiceInterface import WalletServiceInterface
 
 
 class WalletServicesInterfaceImplementation(WalletServiceInterface, ABC):
     wallet_Repository = WalletRepositoryImpl()
+    user_service = UserServiceInterfaceImpl()
 
     def deposit(self, account_number, amount):
-        user = self.wallet_Repository.find_user_by_account_number(account_number)
-        user.deposit(amount)
+        pass
+        # user = self.user_service.
+        # print(user)
+        # user.deposit(amount)
 
     def withdraw(self, account_number, amount, sender_pin):
         sender = self.wallet_Repository.find_user_by_account_number(account_number)

@@ -4,6 +4,7 @@ from tkinter import Tk
 
 from controllers.UserController import UserController
 from controllers.WalletController import WalletController
+from dtos.request.LoginRequest import LoginRequest
 from dtos.request.RegisterRequest import RegisterRequest
 
 if __name__ == '__main__':
@@ -34,6 +35,17 @@ if __name__ == '__main__':
             print("Wrong selection")
         start_app()
 
+
+    def login():
+        login_request = LoginRequest()
+        email_address = input("Enter Your Email Address: ")
+        login_request.set_email_address(email_address)
+        password = input("Enter Your Password: ")
+        login_request.set_password(password)
+        print(user_controller.login(login_request))
+
+
+    # print(user_controller.find_user_by_email_address(login_request.get_email_address()))
 
     def withdraw():
         wallet_controller.withdraw()
@@ -70,16 +82,13 @@ if __name__ == '__main__':
             check_balance()
 
 
-    def login():
-        pass
-
-
     def find_user():
         pass
 
 
     def exit_application():
         pass
+
 
     def register():
 
@@ -96,7 +105,9 @@ if __name__ == '__main__':
         register_request.set_date_of_birth(date_of_birth)
         password = input("Enter Password: ")
         register_request.set_password(password)
-        print(user_controller.register_user(register_request).__str__())
+        print(user_controller.register_user(register_request).get_password())
+        login()
+
 
     # def input(prompt):
     #     return inputbox.askstring("Input", prompt)
@@ -118,4 +129,20 @@ if __name__ == '__main__':
     # 
     # def deposit()
 
-print(start_app())
+    def test_everything():
+        register_request = RegisterRequest()
+        register_request.set_password("password")
+        register_request.set_last_name("last name")
+        register_request.set_email_address("email")
+
+        user_controller.register_user(register_request)
+        login_request = LoginRequest()
+        login_request.set_password("password")
+        login_request.set_email_address("email")
+        result = user_controller.login(login_request)
+        print(result)
+
+
+    # start_app()
+    # display_after_login()
+    test_everything()

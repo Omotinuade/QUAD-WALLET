@@ -10,9 +10,9 @@ class TestUserRepository(TestCase):
 
     user = User()
     user.set_user_name("John")
-    user.
+
 
     def test_save_user(self):
         self.fail()
 
-    def test_find
+    # def test_find

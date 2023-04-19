@@ -15,7 +15,6 @@ class User:
 
     def set_user_id(self, user_id):
         self.__user_id = user_id
-        
 
     def get_first_name(self):
         return self.__first_name
@@ -62,16 +61,16 @@ class User:
     def withdraw(self, amount):
         self.__balance -= amount
 
+    def set_password(self, password):
+        self.__password = password
+
     def get_password(self):
         return self.__password
 
     def __str__(self):
-        return f"First name: {self.__first_name}" \
-               f"Last name:  {self.__last_name}" \
-               f"Account Number: {self.__account_number}" \
-               f"User name: {self.__email_address}" \
-               f"User Id: {self.__user_id}"
-
-    def set_password(self, password):
-        self.__password = password
-       
+        return f"First name:{self.__first_name} " \
+               f"Last name:{self.__last_name} " \
+               f"Account Number:{self.__account_number} " \
+               f"Email address:{self.__email_address} " \
+               f"User Id:{self.__user_id} "\
+               f"User password: {self.__password} "
