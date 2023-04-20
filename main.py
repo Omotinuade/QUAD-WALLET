@@ -134,12 +134,13 @@ if __name__ == '__main__':
         register_request.set_password("password")
         register_request.set_last_name("last name")
         register_request.set_email_address("email")
+        register_request.set_phone_number("08138732503")
 
         user_controller.register_user(register_request)
         login_request = LoginRequest()
         login_request.set_password("password")
         login_request.set_email_address("email")
-        result = user_controller.login(login_request)
+        result = user_controller.find_user_by_account_number(user_controller.login(login_request).get_account_number())
         print(result)
 
 

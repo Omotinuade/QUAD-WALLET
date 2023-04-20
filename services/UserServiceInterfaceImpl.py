@@ -45,5 +45,13 @@ class UserServiceInterfaceImpl(UserServicesInterface):
             raise ValueError("Invalid email address or password")
         return user_response
 
+    def find_user_by_account_number(self, account_number) -> User:
+        user_response = self.user_repo.find_by_account_number(account_number)
+        if not user_response:
+            raise ValueError("User does not exist")
+        else:
+            return user_response
+
+
 
 
