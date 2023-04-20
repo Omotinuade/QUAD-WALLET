@@ -19,3 +19,6 @@ class UserController:
 
     def find_user_by_email_address(self, email_address):
         return self.user_service.find_user_by_email_address(email_address)
+
+    def find_user_by_account_number(self, account_number):
+        return self.user_service.find_user_by_account_number(account_number)

@@ -14,3 +14,6 @@ class UserServicesInterface:
 
     def find_user_by_email_address(self, email_address) -> User:
         raise NotImplementedError
+
+    def find_user_by_account_number(self, account_number) -> User:
+        raise NotImplementedError
