@@ -7,6 +7,10 @@ from models import User
 class UserRepository(ABC):
 
     @abstractmethod
+    def count(self) -> int:
+        pass
+
+    @abstractmethod
     def save_user(self, user: User) -> User:
         pass
 
@@ -16,6 +20,10 @@ class UserRepository(ABC):
 
     @abstractmethod
     def delete_by_account_number(self, account_number: str) -> None:
+        pass
+
+    @abstractmethod
+    def delete_by_id(self, user_id: int):
         pass
 
     @abstractmethod
