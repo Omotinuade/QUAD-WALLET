@@ -1,15 +1,10 @@
-from abc import ABC
-
 from data.models.User import User
 from data.repositories.UserRepository import UserRepository
 from data.repositories.UserRepositoryImpl import UserRepositoryImpl
-
 from dtos.request.LoginRequest import LoginRequest
 from dtos.request.RegisterRequest import RegisterRequest
 from dtos.response import LoginResponse
-
 from services.UserServicesInterface import UserServicesInterface
-from utils.Mapper import Mapper
 
 
 def maps(registerRequest: RegisterRequest, user: User):
@@ -19,10 +14,11 @@ def maps(registerRequest: RegisterRequest, user: User):
     user.set_email_address(registerRequest.get_email_address())
     user.set_date_of_birth(registerRequest.get_date_of_birth())
     user.set_phone_number(registerRequest.get_phone_number())
+    user.set_account_number(registerRequest.get_phone_number()[1:])
     return user
 
 
-class UserServiceInterfaceImpl(UserServicesInterface, ABC):
+class UserServiceInterfaceImpl(UserServicesInterface):
     user_repo = UserRepositoryImpl()
 
     def register_user(self, user_request: RegisterRequest) -> User:
@@ -39,11 +35,15 @@ class UserServiceInterfaceImpl(UserServicesInterface, ABC):
         else:
             return user_response
 
-    def login_user(self, login_request: LoginRequest) -> LoginResponse:
+    def login_user(self, login_request: LoginRequest) -> User:  # LoginResponse:
         user_response = self.user_repo.find_user_by_email_address(login_request.get_email_address())
+        print(user_response)
         if user_response is None:
-            raise ValueError("User does not Exist")
-        if user_response.get_password != login_request.get_password():
-            raise ValueError("Password incorrect")
-        else:
-            return user_response
+            raise ValueError("User not there")
+
+        if user_response.get_password() is not (login_request.get_password()):
+            raise ValueError("Invalid email address or password")
+        return user_response
+
+
+

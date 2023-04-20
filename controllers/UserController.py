@@ -15,4 +15,7 @@ class UserController:
         try:
             return self.user_service.login_user(request)
         except ValueError as ex:
-            return ex.args[0]
+            return ex.args
+
+    def find_user_by_email_address(self, email_address):
+        return self.user_service.find_user_by_email_address(email_address)
