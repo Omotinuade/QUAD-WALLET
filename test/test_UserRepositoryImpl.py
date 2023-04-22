@@ -36,3 +36,11 @@ class Test(TestCase):
         self.assertEqual(1, self.userRepository.count())
         self.userRepository.delete_by_id(1)
         self.assertEqual(0, self.userRepository.count())
+
+    def test_repo_CanSaveTwoUsers(self):
+        saved_user = self.userRepository.save_user(self.user)
+        self.assertEqual(1, saved_user.get_user_id())
+
+        second_user = User()
+        save_second_user = self.userRepository.save_user(second_user)
+        self.assertEqual(2, second_user.get_user_id())
