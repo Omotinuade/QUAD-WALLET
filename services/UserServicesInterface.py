@@ -17,3 +17,6 @@ class UserServicesInterface:
 
     def find_user_by_account_number(self, account_number) -> User:
         raise NotImplementedError
+
+    def print_users(self):
+        raise NotImplementedError

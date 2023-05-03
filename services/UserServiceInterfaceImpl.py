@@ -22,36 +22,37 @@ class UserServiceInterfaceImpl(UserServicesInterface):
     user_repo = UserRepositoryImpl()
 
     def register_user(self, user_request: RegisterRequest) -> User:
-        if self.user_repo.find_user_by_email_address(user_request.get_email_address()) is not None:
+        if self.user_repo.find_by_email_address(user_request.get_email_address()) is not None:
             raise ValueError("User already Exist")
         else:
             user = User()
             return self.user_repo.save_user(maps(user_request, user))
 
     def find_user_by_email_address(self, email_address) -> User:
-        user_response = self.user_repo.find_user_by_email_address(email_address)
+        user_response = self.user_repo.find_by_email_address(email_address)
         if not user_response:
             raise ValueError("User does not exist")
         else:
             return user_response
 
-    def login_user(self, login_request: LoginRequest) -> User:  # LoginResponse:
-        user_response = self.user_repo.find_user_by_email_address(login_request.get_email_address())
-        print(user_response)
+    def login_user(self, login_request: LoginRequest) -> bool:  # LoginResponse:
+        user_response = self.user_repo.find_by_email_address(login_request.get_email_address())
         if user_response is None:
             raise ValueError("User not there")
 
-        if user_response.get_password() is not (login_request.get_password()):
+        if user_response.get_password() != login_request.get_password():
             raise ValueError("Invalid email address or password")
-        return user_response
+        return True
 
     def find_user_by_account_number(self, account_number) -> User:
         user_response = self.user_repo.find_by_account_number(account_number)
-        if not user_response:
+        print("I am ", user_response)
+        if user_response is None:
             raise ValueError("User does not exist")
         else:
             return user_response
 
-
+    def print_users(self):
+        self.user_repo.print_all_users()
 
 

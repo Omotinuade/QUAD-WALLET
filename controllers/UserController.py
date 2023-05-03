@@ -1,3 +1,4 @@
+from data.models.User import User
 from dtos.request import RegisterRequest
 from services.UserServiceInterfaceImpl import UserServiceInterfaceImpl
 
@@ -9,13 +10,13 @@ class UserController:
         try:
             return self.user_service.register_user(request)
         except ValueError as ex:
-            return ex.args[0]
+            return ex.args
 
-    def login(self, request):
+    def login(self, request) -> bool:
         try:
             return self.user_service.login_user(request)
         except ValueError as ex:
-            return ex.args
+            return ex.args[0]
 
     def find_user_by_email_address(self, email_address):
         return self.user_service.find_user_by_email_address(email_address)
