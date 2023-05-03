@@ -1,24 +1,39 @@
-from typing import List, Any
+from abc import ABC, abstractmethod
+from typing import List
 
 from data.models.User import User
 
 
-class UserRepository:
+class UserRepository(ABC):
 
+    @abstractmethod
+    def count(self) -> int:
+        pass
+
+    @abstractmethod
     def save_user(self, user: User) -> User:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def find_by_id(self, user_id: int) -> User:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def delete_by_account_number(self, account_number: str) -> None:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
+    def delete_by_id(self, user_id: int):
+        pass
+
+    @abstractmethod
     def find_all(self) -> List[User]:
-        raise NotImplementedError
+        pass
 
-    def find_user_by_email_address(self, email_address: str) -> Any | None:
-        raise NotImplementedError
+    @abstractmethod
+    def find_by_email_address(self, email_address: str) -> User:
+        pass
 
-    def find_by_account_number(self, account_number: str) -> List:
-        raise NotImplementedError
+    @abstractmethod
+    def find_by_account_number(self, account_number: str) -> User:
+        pass

@@ -4,19 +4,44 @@ from data.models.User import User
 from data.repositories.UserRepositoryImpl import UserRepositoryImpl
 
 
-class TestUserRepository(TestCase):
-
-    def setUp(self) -> None:
-        self.repository = UserRepositoryImpl()
+class Test(TestCase):
+    def setUp(self):
+        self.userRepository = UserRepositoryImpl()
         self.user = User()
-        self.user.set_email_address("benten")
-        self.user.set_password("2121")
-        self.user.set_phone_number("08138732503")
-        self.user.set_account_number(self.user.get_phone_number()[1:])
 
-    def test_save_user(self):
-        result = self.repository.save_user(self.user)
-        self.assertEquals(1, result.get_user_id())
-        self.assertEquals(result.get_email_address(), self.user.get_email_address())
+    def test_save_user_will_show_user_saved(self):
+        saved_user = self.userRepository.save_user(self.user)
+        self.assertEqual(1, self.userRepository.count())
 
-    # def test_find
+    def test_save_one_user_id_of_user_will_be_one(self):
+        saved_user = self.userRepository.save_user(self.user)
+        print(saved_user)
+        print(self.user.get_user_id())
+        self.assertEqual(1, self.user.get_user_id())
+
+    def test_user_can_be_found_by_id(self):
+        saved_user = self.userRepository.save_user(self.user)
+        self.assertEqual(1, saved_user.get_user_id())
+        find_user = self.userRepository.find_by_id(1)
+        self.assertEqual(find_user, saved_user)
+
+    def test_if_twoUser_areSaved_withThe_sameId_countWill_beOne(self):
+        saved_user1 = self.userRepository.save_user(self.user)
+        self.assertEqual(1, saved_user1.get_user_id())
+        self.userRepository.save_user(saved_user1)
+        saved_user1.set_email_address("Shitty Guy")
+        self.assertEqual(1, self.userRepository.count())
+
+    def test_delete_user_byAccount_number(self):
+        saved_user = self.userRepository.save_user(self.user)
+        self.assertEqual(1, self.userRepository.count())
+        self.userRepository.delete_by_id(1)
+        self.assertEqual(0, self.userRepository.count())
+
+    def test_repo_CanSaveTwoUsers(self):
+        saved_user = self.userRepository.save_user(self.user)
+        self.assertEqual(1, saved_user.get_user_id())
+
+        second_user = User()
+        save_second_user = self.userRepository.save_user(second_user)
+        self.assertEqual(2, second_user.get_user_id())

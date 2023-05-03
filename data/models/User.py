@@ -8,7 +8,7 @@ class User:
         self.__email_address = " "
         self.__date_of_birth = ""
         self.__phone_number = ""
-        self.__balance = 0
+        self.__balance: int = 0
 
     def get_user_id(self):
         return self.__user_id
@@ -31,7 +31,7 @@ class User:
     def get_account_number(self):
         return self.__account_number
 
-    def set_account_number(self, account_number):
+    def set_account_number(self, account_number: str):
         self.__account_number = account_number
 
     def get_email_address(self):
@@ -55,7 +55,7 @@ class User:
     def get_balance(self):
         return self.__balance
 
-    def deposit(self, amount):
+    def deposit(self, amount: int):
         self.__balance += amount
 
     def withdraw(self, amount):
@@ -73,4 +73,5 @@ class User:
                f"Account Number:{self.__account_number} " \
                f"Email address:{self.__email_address} " \
                f"User Id:{self.__user_id} "\
+               f"User Balance:{self.__balance} "\
                f"User password: {self.__password} "

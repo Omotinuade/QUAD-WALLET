@@ -1,18 +1,25 @@
 from abc import ABC, abstractmethod
 
+from dtos.request.DepositRequest import DepositRequest
+from dtos.request.TransferRequest import TransferRequest
+from dtos.request.WithdrawalRequest import WithdrawalRequest
+from dtos.response.DepositTransactionResponse import DepositTransactionResponse
+from dtos.response.TransferTransactionResponse import TransferTransactionResponse
+from dtos.response.WithdrawalTransactionResponse import WithdrawalTransactionResponse
+
 
 class WalletServiceInterface(ABC):
 
     @abstractmethod
-    def deposit(self, accountNumber, amount):
+    def deposit(self, deposit_request: DepositRequest) -> DepositTransactionResponse:
         pass
 
     @abstractmethod
-    def withdraw(self, account_number, amount, sender_pin):
+    def withdraw(self, withdrawal_request: WithdrawalRequest) -> WithdrawalTransactionResponse:
         pass
 
     @abstractmethod
-    def transfer(self, sender_account_number, receiver_account_number, amount, sender_pin):
+    def transfer(self, transfer_request: TransferRequest) -> TransferTransactionResponse:
         pass
 
     @abstractmethod
